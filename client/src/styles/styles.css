@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+#page-wrap {
+  padding: 10px; /* Espaciado más uniforme */
+}
+
+@media (max-width: 768px) {
+  #page-wrap {
+    padding: 5px; /* Reduce padding en pantallas pequeñas */
+  }
+}

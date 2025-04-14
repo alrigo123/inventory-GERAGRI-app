@@ -48,13 +48,6 @@ const ExportReportsMod = () => {
     return "Desconocido";
   };
 
-  // Función para mapear estado
-  // const mapSituacion = (estado) => {
-  //   if (estado === 1) return "Verificado";
-  //   if (estado === 0) return "Faltante";
-  //   return "Desconocido";
-  // };
-
   // Función genérica para exportar datos a Excel
   const exportToExcel = (dataToExport, fileName) => {
     const ws = XLSX.utils.json_to_sheet(dataToExport);
@@ -72,7 +65,6 @@ const ExportReportsMod = () => {
         FECHA_REGISTRO: formatDate,
         ESTADO: mapEstado,
         DISPOSICION: mapDisposicion
-        // SITUACION: mapSituacion
       },
       fileName: "reporte-consolidado-general",
     },

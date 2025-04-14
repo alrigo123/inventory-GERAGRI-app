@@ -59,7 +59,6 @@ export const validateEmptyCells = (sheetData, expectedColumns, setErrorMessage, 
 
 /* FUNCTION to validate headers according to the template */
 export const validateHeaderColumns = (sheetData, expectedColumns, setErrorMessage, setShowModalButton) => {
-    // const uploadedColumns = sheetData; // Headers
     const uploadedColumns = sheetData[0]; // Headers
     const missingColumns = expectedColumns.filter((col) => !uploadedColumns.includes(col));
     const extraColumns = uploadedColumns.filter((col) => !expectedColumns.includes(col));

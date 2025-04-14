@@ -1,12 +1,3 @@
-// export const formatToDateInput = (dateString) => {
-//     if (!dateString) return ''; // Si está vacío o undefined, devuelve una cadena vacía
-//     const parts = dateString.split('/');
-//     if (parts.length !== 3) return ''; // Verificar que el formato es válido
-//     const [day, month, yearAndTime] = parts;
-//     const [year] = yearAndTime.split(' '); // Ignorar la parte "HH:mm:ss"
-//     return `${year}-${month}-${day}`;
-// };
-
 export const formatToDateInput = (dateString) => {
     if (!dateString) return ''; // Handle empty or undefined values
     const parts = dateString.split('/');

@@ -1,9 +1,20 @@
 import { Router } from "express";
-import { registerUser, loginUser, logoutUser, verifyPin, getAllUsers, getUserById, deleteUser, updateUserStatus } from "../controllers/userManagement.controller.js";
-import { authenticateToken, verifyAdminToken } from "../middleware/tokenJWT.js";
+import {
+    loginUser,
+    registerUser,
+    logoutUser,
+    verifyPin,
+    getAllUsers,
+    getUserById,
+    deleteUser,
+    updateUserStatus
+} from "../controllers/userManagement.controller.js";
+
+import { verifyAdminToken } from "../middleware/tokenJWT.js";
 
 const router = Router();
 
+/* Methos to manage session and storage */
 router.post("/login", loginUser); // Component "LoginModalComp", to compare user and password to access to patrimonial code functions
 router.post("/register", registerUser); // File "RegiterWithPin", to register new user in DB
 router.post("/verify-pin", verifyPin); // File "RegisterWithPin", to match the PIN with the user payload

@@ -1,15 +1,12 @@
 import { Router } from "express";
 
 import {
-  getItemsGeneralDisposition,
   getItemsGeneralState,
   getItemsStateTrue,
   getItemsStateFalse,
+  getItemsGeneralDisposition,
   getItemsDispositionTrue,
   getItemsDispositionFalse,
-  getItemsGeneralSituation,
-  getItemsSituationTrue,
-  getItemsSituationFalse,
   getAllItemsToExport
 } from "../controllers/exportReports.controller.js";
 
@@ -25,11 +22,6 @@ router.get("/state/false", getItemsStateFalse); // NO REGISTRADOS
 router.get("/disposition", getItemsGeneralDisposition); // General Disposition
 router.get("/disposition/true", getItemsDispositionTrue); // ACTIVOS
 router.get("/disposition/false", getItemsDispositionFalse); // DE BAJA
-
-/* Module "ExportReportSituaMod", similar to REGISTRADOS/NO REGISTRADOS */
-router.get("/situation", getItemsGeneralSituation);
-router.get("/situation/true", getItemsSituationTrue);
-router.get("/situation/false", getItemsSituationFalse);
 
 /* Module "ExportReportsMod", to make a general export of all items */
 router.get('/general',getAllItemsToExport)

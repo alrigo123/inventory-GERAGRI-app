@@ -5,9 +5,6 @@ import PopNotify from '../AnimationComp/PopNotify';
 import "../styles/ShowItem.css";
 
 /* EXPORT TO EXCEL MODULES*/
-// import ExportReportsDispoMod from '../Modules/Export/ExportReportsDispoMod';
-// import ExportReportsStateMod from '../Modules/Export/ExportReportsStateMod';
-// import ExportReportsSituaMod from '../Modules/Export/ExportReportsSituaMod';
 import ExportReportsMod from '../Modules/Export/ExportReportsMod';
 
 const URI = process.env.REACT_APP_API_URL_ITEMS;
@@ -100,10 +97,7 @@ const ShowItemsComp = () => {
     return (
         <div className="container">
             <div className='mt-3'>
-                {/* Botones para exportar reportes */}
-                {/* <ExportReportsStateMod />
-                <ExportReportsDispoMod />
-                <ExportReportsSituaMod /> */}
+                {/* Boton para exportar reportes */}
                 <ExportReportsMod />
             </div>
             <hr className="border border-success border-1 opacity-100 mb-4" />

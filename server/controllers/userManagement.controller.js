@@ -1,7 +1,7 @@
 import pool from '../db.js'; // Asegúrate de importar tu pool de conexión a la base de datos
-import * as bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken';
 import modelUser from '../models/user.model.js'
+import jwt from 'jsonwebtoken';
+import * as bcrypt from 'bcrypt'
 
 const SECRET_KEY = process.env.JWT_KEY
 const SECURITY_PIN = process.env.SECURITY_PIN; // Store this securely (e.g., in an environment variable)
@@ -81,8 +81,8 @@ export const registerUser = async (req, res) => {
         // Insertar el usuario en la base de datos
         await modelUser.registerUser(pool, dni, name_and_last, hashedPassword)
         /* await pool.query(
-             "INSERT INTO user_i (dni, name_and_last, password) VALUES (?, ?, ?)",
-             [dni, name_and_last, hashedPassword]
+            "INSERT INTO user_i (dni, name_and_last, password) VALUES (?, ?, ?)",
+            [dni, name_and_last, hashedPassword]
          ); */
         res.status(201).json({ message: "Usuario registrado exitosamente" });
 

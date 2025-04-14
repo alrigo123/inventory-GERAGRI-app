@@ -1,5 +1,4 @@
 import pool from '../db.js';
-import modelItems from '../models/items.model.js';
 
 //FUNCTION TO GET ALL DATA, INCLUDING: CONSERVATION STATE, AND IT IS LIMITED TO SHOW "n" SAMPLES
 export const getAllItemsAndConservationLimited = async (req, res, next) => {

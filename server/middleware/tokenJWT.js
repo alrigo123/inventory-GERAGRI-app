@@ -46,23 +46,3 @@ export const verifyAdminToken = (req, res, next) => {
         return res.status(401).json({ message: "Invalid or expired token" });
     }
 };
-
-export const authenticateTokenOptional = function (req, res, next) {
-    const token = req.headers['authorization']?.split(' ')[1];
-
-    if (!token) {
-        console.log('Aquí no tienes token');
-        // Continúa sin autenticación ya que es opcional
-        return next();
-    }
-
-    jwt.verify(token, SECRET_KEY, (err, user) => {
-        if (err) {
-            console.log('Token no válido o expirado');
-            // Si el token es inválido, también se continúa, o podrías manejarlo de otra forma
-            return next();
-        }
-        req.user = user;
-        next();
-    });
-};

@@ -80,42 +80,6 @@ export const addObservation = async (req, res) => {
     }
 };
 
-// FUNCTION to update disposition (activo 1 - de baja 0)
-export const updateDisposition = async (req, res) => {
-    const { id } = req.params;
-    const { DISPOSICION } = req.body;
-    try {
-        const [result] = await pool.query(
-            'UPDATE item SET DISPOSICION = ? WHERE CODIGO_PATRIMONIAL = ?',
-            [DISPOSICION, id]
-        );
-
-        if (result.affectedRows === 0) return res.status(404).json({ message: 'Item not found' });
-
-        res.json({ message: 'Disposition updated successfully' });
-    } catch (error) {
-        res.status(500).json(error);
-    }
-};
-
-// FUNCTION to update situacion (verificado 1 - faltante 0)
-export const updateSituation = async (req, res) => {
-    const { id } = req.params;
-    const { SITUACION } = req.body;
-    try {
-        const [result] = await pool.query(
-            'UPDATE item SET SITUACION = ? WHERE CODIGO_PATRIMONIAL = ?',
-            [SITUACION, id]
-        );
-
-        if (result.affectedRows === 0) return res.status(404).json({ message: 'Item not found' });
-
-        res.json({ message: 'Situation updated successfully' });
-    } catch (error) {
-        res.status(500).json(error);
-    }
-};
-
 // FUNCTION to update item status and situation (QR scan) by their CODIGO_PATRIMONIAL (registrado & verificado to 1)
 export const getItemByCodePatAndUpdate = async (req, res, next) => {
     try {

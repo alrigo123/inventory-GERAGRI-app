@@ -15,7 +15,6 @@ import ShowItemsComp from './ItemComponents/ShowItemsComp.js';
 import CodePropertyComp from './ItemComponents/CodePropertyComp.js';
 import WorkerSearchComp from './ItemComponents/WorkerSearchComp.js';
 import DependencySearchComp from './ItemComponents/DependencySearchComp.js';
-import DoubleSearchComp from './ItemComponents/DoubleSearchComp.js';
 
 // GRID DATA COMPONENTS
 import GridImportedComp from './GridComponents/GridImportedComp.js';
@@ -30,7 +29,6 @@ import EditItemComp from './HandlerComponets/EditItemComp.js';
 import AddItemComp from './HandlerComponets/AddItemComp.js';
 
 //CHAT BOT
-import ChatBotComp from './chat-test/ChatBotComp.js';
 import LockComp from './private/LockComp.js';
 import SurfComp from './private/SurfComp.js';
 
@@ -54,24 +52,13 @@ function App() {
             <Route path="/pdf" element={<PDFViewer />} />
             <Route path="/search" element={<GeneralSearchComp />} />
             <Route path="/items" element={<ShowItemsComp />} />
-            <Route path="/doble-busqueda" element={<DoubleSearchComp />} />
 
             {/* Route for 404 pages not found */}
             <Route path="*" element={<Error404Comp />} />
 
             {/* AI INTEGRATION */}
-            <Route path="/chat" element={<ChatBotComp />} />
             <Route path="/2804RST/login" element={<LockComp />} />
             <Route path="/2804RST/surf" element={<SurfComp />} />
-
-            {/* ---- RUTAS NO PROTEGIDAS , X NECESARIO UN LOGIN ----- */}
-            {/*
-            <Route path="/codigo-patrimonial" element={<CodePropertyComp />} />
-            <Route path="/edit/:id" element={<EditItemComp />} />
-            <Route path="/add" element={<AddItemComp />} />
-            <Route path="/dependencia" element={<DependencySearchComp />} />
-            <Route path="/trabajador" element={<WorkerSearchComp />} />
-            */}
 
             {/* ----- Routes and navigation protected ---- */}
             <Route path="/codigo-patrimonial" element={

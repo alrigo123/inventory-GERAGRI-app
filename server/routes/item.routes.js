@@ -1,33 +1,30 @@
 import { Router } from "express";
 import {
-  getItemByCodePat,
-  getItemsQtyByDependece,
-  getItemsQtyByWorker,
+  getAllItemsAndConservationLimited,
   getConservationStatus,
+  getItemByCodePat,
   getItemByCodePatAndConservation,
-  getAllItemsAndConservationLimited
+  getItemsQtyByWorker,
+  getItemsQtyByDependece
 } from "../controllers/getItems.controller.js";
 
 import {
   searchGeneral,
-  searchItemByPartialWorker,
-  searchItemByPartialDependency,
-  searchItemsByWorkerAndDescription,
   searchItemsByWorker,
-  searchItemsByDependece
+  searchItemsByDependece,
+  searchItemByPartialWorker,
+  searchItemByPartialDependency
 } from "../controllers/searchItems.controller.js";
 
 import {
-  updateDisposition,
-  updateSituation,
-  insertExcelData,
+  addItem,
+  addObservation,
   getItemByCodePatAndUpdate,
   updateItem,
-  addItem,
-  addObservation
+  insertExcelData
 } from "../controllers/handlerItems.controller.js";
 
-import { authenticateToken, authenticateTokenOptional } from "../middleware/tokenJWT.js";
+import { authenticateToken} from "../middleware/tokenJWT.js";
 
 const router = Router();
 
@@ -40,7 +37,6 @@ router.get("/partial/dependency", searchItemByPartialDependency); // Module "Cod
 router.get("/worker", authenticateToken, searchItemsByWorker); // Module "WorkerSearchMod1", to get info of all items from a single Worker by his data
 router.get("/dependency", authenticateToken, searchItemsByDependece); // Module "DependencySearchMod1", to get info of all items from a single dependency by his data
 
-router.get("/filter", searchItemsByWorkerAndDescription); /* Component "DoubleSearchComp", to fetch in base of worker and dependency (NOT USED IN FE) */
 router.get("/conservation", getConservationStatus); // Components "ADD-EDIT" to Get conservation state (Bueno,malo,regular)
 
 router.get("/:id", authenticateToken, getItemByCodePatAndUpdate); // Module "CodeSearchMod1", * gets information from item by their CODIGO_PATRIMONIAL ~ if find then update the status to REGISTRADO
@@ -55,8 +51,7 @@ router.get("/dependency/qty", getItemsQtyByDependece); // Module "DependencySear
 //PUT REQUEST
 router.put("/edit/:id", authenticateToken, updateItem); // Component "EditItem" to update values from a single item by their CODIGO_PATRIMONIAL
 router.put('/observation/:id', addObservation) /* Method to edit some observation (add or remove text) from a single item by their CODIGO_PATRIMONIAL */
-router.put("/disposition/:id", updateDisposition); /* METHOD NOT USED IN FE (USED BEFORE TO TOGGLE CHANGE IN TABLES) */
-router.put("/situation/:id", updateSituation); /* METHOD NOT USED IN FE (USED BEFORE TO TOGGLE CHANGE IN TABLES) */
+
 
 //POST REQUEST
 router.post("/imported", insertExcelData); // Component "GridTest" to send excel data to DB

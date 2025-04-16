@@ -14,6 +14,7 @@ const mapDisposicion = (estado) => {
     return "Desconocido";
 };
 
+/* Method to export Items in excel from the DB */
 export const exportarItems = (results1, estado, nombreHoja, nombreArchivo, searchTerm1, fechaFormateada) => {
     // Filtra los resultados según el estado proporcionado
     const filteredResults = estado !== undefined

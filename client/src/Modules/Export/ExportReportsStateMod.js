@@ -28,7 +28,7 @@ const ExportReportsStateMod = () => {
 
   // Función para formatear fechas
   const formatDate = (date) => {
-    if (!date) return "";
+    if (!date) return "SIN REGISTRO";
     const d = new Date(date);
     if (isNaN(d)) return "";
     return d.toLocaleDateString("es-ES");

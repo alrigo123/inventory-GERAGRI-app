@@ -1,4 +1,5 @@
 import pool from '../db.js';
+import modelItems from '../models/items.model.js';
 
 //FUNCTION TO GET ALL DATA, INCLUDING: CONSERVATION STATE, AND IT IS LIMITED TO SHOW "n" SAMPLES
 export const getAllItemsAndConservationLimited = async (req, res, next) => {
@@ -7,18 +8,7 @@ export const getAllItemsAndConservationLimited = async (req, res, next) => {
         const limit = parseInt(req.query.limit) || 50; // Límite de registros por página, por defecto 50
         const offset = (page - 1) * limit; // Cálculo del offset
 
-        const [rows] = await pool.query(
-            `SELECT I.N, I.CODIGO_PATRIMONIAL, I.DESCRIPCION, I.TRABAJADOR,
-            I.DEPENDENCIA, I.UBICACION, I.FECHA_REGISTRO,
-            I.FECHA_ALTA, I.FECHA_COMPRA, I.ESTADO, I.DISPOSICION,
-            I.SITUACION, I.CONSERV, C.CONSERV AS EST_CONSERVACION
-            FROM item AS I
-            INNER JOIN conservacion AS C
-            ON I.CONSERV = C.id
-            ORDER BY I.CODIGO_PATRIMONIAL ASC
-            LIMIT ? OFFSET ?`,
-            [limit, offset] // Query parameters
-        );
+        const rows = await modelItems.getAllItemsAndConservationLimited(pool, limit, offset); // Get all items and conservation status
 
         const [totalRows] = await pool.query('SELECT COUNT(*) as total FROM item');
         const total = totalRows[0].total; //COUNT OF ITEMS (9228)
@@ -60,21 +50,12 @@ export const getItemByCodePat = async (req, res, next) => {
 export const getItemByCodePatAndConservation = async (req, res, next) => {
     try {
         const id = req.params.id
-        const [row] = await pool.query(`
-            SELECT I.CODIGO_PATRIMONIAL, I.DESCRIPCION, I.TRABAJADOR,
-            I.DEPENDENCIA, I.UBICACION, I.FECHA_REGISTRO, I.OBSERVACION,
-            I.FECHA_ALTA, I.FECHA_COMPRA, I.ESTADO, I.DISPOSICION,
-            I.SITUACION, I.CONSERV, C.CONSERV AS EST_CONSERVACION
-            FROM item AS I
-            INNER JOIN conservacion AS C
-            ON I.CONSERV = C.id
-            WHERE I.CODIGO_PATRIMONIAL = ?`,
-            [id]);
-        //with the [] we only get an array with the necessary components, without that it gives us more rows
+
+        const row = await modelItems.getItemByCodePatAndConservation(pool, id); // Get all items and conservation status
 
         if (!row.length) return res.status(404).json({ message: 'Item not found' })
+
         res.json(row[0]) // GET THE FIRST ELEMENT [0]
-        // res.json(row) // GET ALL ITEMS, BUT DOESN'T PRINT BECAUSE IT REPATS ITS CODE
     } catch (error) {
         return res.status(500).json(error)
     }

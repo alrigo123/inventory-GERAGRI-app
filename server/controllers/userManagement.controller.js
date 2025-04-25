@@ -17,9 +17,7 @@ export const loginUser = async (req, res) => {
         if (!dni || !password) { return res.status(400).json({ message: 'DNI y contraseña son requeridos BACKEND' }); }
 
         // Buscar al usuario por DNI
-        // const [rows] = await pool.query("SELECT * FROM user_i WHERE dni = ?", [dni]); // Destructuring para evitar niveles anidados
         const rows = await modelUser.findUserByDNI(pool, dni)
-        // console.log("ROWWS", rows)
 
         // Verificar si el usuario existe
         if (rows.length === 0) { return res.status(404).json({ message: 'Usuario no encontrado' }); }

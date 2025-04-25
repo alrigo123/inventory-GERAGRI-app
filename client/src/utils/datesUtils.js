@@ -30,7 +30,7 @@ export const formatToDatabase = (dateString) => {
 
 // Convierte una fecha en string a formato legible "DD/MM/YYYY HH:mm:ss"
 export const parseDate = (dateString) => {
-    if (!dateString) return ''; // Si no hay fecha, retorna vacío
+    if (!dateString) return 'SIN REGISTRO'; // Si no hay fecha, retorna vacío
 
     // Usa el constructor Date y lo convierte a una cadena en español con formato completo
     const dateParsed = new Date(dateString).toLocaleDateString('es-ES', {

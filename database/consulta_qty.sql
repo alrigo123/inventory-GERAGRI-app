@@ -1,0 +1,77 @@
+-- COUNT QUANTITY OF ITEMS FROM ONE PERSON
+SELECT 
+    TRABAJADOR,
+    DESCRIPCION,
+    DEPENDENCIA,
+    COUNT(*) AS CANTIDAD_ITEMS
+FROM 
+    item
+WHERE 
+    TRABAJADOR LIKE '%GUTIERREZ%'  -- Reemplaza "Perez" por el apellido que quieras buscar
+GROUP BY 
+    TRABAJADOR,
+    DESCRIPCION,
+    DEPENDENCIA
+ORDER BY 
+    TRABAJADOR,
+    DEPENDENCIA,
+    DESCRIPCION;
+
+
+-----
+-- WATCH ALL ITEMS WITH CODE FROM ONE PERSON
+SELECT 
+    TRABAJADOR,
+    DESCRIPCION,
+    CODIGO_PATRIMONIAL,
+    DEPENDENCIA
+FROM 
+    item
+WHERE 
+    TRABAJADOR LIKE '%GUTIERREZ%'  -- Reemplaza "Perez" por el apellido o el nombre del trabajador que desees buscar
+ORDER BY 
+    TRABAJADOR,
+    DEPENDENCIA,
+    DESCRIPCION;
+
+-- BUSQUEDA POR DEPENDENCIA
+SELECT 
+    TRABAJADOR,
+    DESCRIPCION,
+    COUNT(*) AS CANTIDAD_ITEMS,
+    DEPENDENCIA
+FROM 
+    item
+WHERE 
+    DEPENDENCIA LIKE '%URUBAMBA%'  -- Reemplaza "AGENCIA AGRARIA CUSCO" por el nombre de la dependencia que quieras buscar
+GROUP BY
+    TRABAJADOR,
+    DESCRIPCION
+ORDER BY
+    TRABAJADOR,
+    DESCRIPCION;
+
+--- DEPENDENCIA Y SUS ITEMS
+SELECT 
+DEPENDENCIA,
+    DESCRIPCION,
+    CODIGO_PATRIMONIAL,
+    TRABAJADOR
+FROM 
+    item
+WHERE 
+    DEPENDENCIA LIKE '%CUSCO%'  -- Reemplaza "AGENCIA AGRARIA CUSCO" por el nombre de la dependencia que desees buscar
+ORDER BY 
+    DESCRIPCION,
+    TRABAJADOR;
+
+
+    --- TABLE TO TRACK DATES
+   CREATE TABLE inventario_historial (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    item_id INT NOT NULL,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE
+);
+
+---

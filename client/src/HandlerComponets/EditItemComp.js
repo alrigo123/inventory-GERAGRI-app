@@ -53,20 +53,25 @@ const EditItemComp = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await APIgetItemById(id);
+                // const data = await APIgetItemById(id);
+                
+                const response = await axios.get(`${API_URL}/status/${id}`);
+
+                // return response.data;
+
                 setFormData({
-                    CODIGO_PATRIMONIAL: data.CODIGO_PATRIMONIAL,
-                    DESCRIPCION: data.DESCRIPCION || '',
-                    TRABAJADOR: data.TRABAJADOR || '',
-                    DEPENDENCIA: data.DEPENDENCIA || '',
-                    UBICACION: data.UBICACION || '',
-                    FECHA_REGISTRO: data.FECHA_REGISTRO,
-                    FECHA_ALTA: data.FECHA_ALTA || '',
-                    FECHA_COMPRA: data.FECHA_COMPRA || '',
-                    ESTADO: data.ESTADO,
-                    DISPOSICION: data.DISPOSICION,
-                    SITUACION: data.SITUACION,
-                    CONSERV: data.CONSERV || ''
+                    CODIGO_PATRIMONIAL: response.data.CODIGO_PATRIMONIAL,
+                    DESCRIPCION: response.data.DESCRIPCION || '',
+                    TRABAJADOR: response.data.TRABAJADOR || '',
+                    DEPENDENCIA: response.data.DEPENDENCIA || '',
+                    UBICACION: response.data.UBICACION || '',
+                    FECHA_REGISTRO: response.data.FECHA_REGISTRO,
+                    FECHA_ALTA: response.data.FECHA_ALTA || '',
+                    FECHA_COMPRA: response.data.FECHA_COMPRA || '',
+                    ESTADO: response.data.ESTADO,
+                    DISPOSICION: response.data.DISPOSICION,
+                    SITUACION: response.data.SITUACION,
+                    CONSERV: response.data.CONSERV || ''
                 });
                 setLoading(false);
             } catch (err) {

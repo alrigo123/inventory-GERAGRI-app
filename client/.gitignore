@@ -1,9 +1,9 @@
 /node_modules
 /test
 /.pnp
-/src/private
+# /src/private
 .pnp.js
-.env
+# .env
 htaccess
 
 /src/test

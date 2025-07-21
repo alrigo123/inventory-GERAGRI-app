@@ -3,23 +3,23 @@ import { config } from 'dotenv';
 config(); //Cargar las variables del archivo .env
 
 // Local Host
-const pool = new createPool({
-    host: 'localhost',
-    user: process.env.DB_USER_LOCAL,
-    password: '',
-    database: process.env.DB_NAME_LOCAL,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-})
+// const pool = new createPool({
+//     host: 'localhost',
+//     user: process.env.DB_USER_LOCAL,
+//     password: '',
+//     database: process.env.DB_NAME_LOCAL,
+//     waitForConnections: true,
+//     connectionLimit: 10,
+//     queueLimit: 0
+// })
 
 // Clever cloud
-// const pool = new createPool({
-//     host: process.env.DB_HOST_CLOUD,
-//     user: process.env.DB_USER_CLOUD,
-//     password: process.env.DB_PASSWORD_CLOUD,
-//     database: process.env.DB_NAME_CLOUD
-// })
+const pool = new createPool({
+    host: process.env.DB_HOST_CLOUD,
+    user: process.env.DB_USER_CLOUD,
+    password: process.env.DB_PASSWORD_CLOUD,
+    database: process.env.DB_NAME_CLOUD
+})
 
 // Hostgator GERAGRI
 // const pool = new createPool({

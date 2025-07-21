@@ -18,8 +18,11 @@ const pool = new createPool({
     host: process.env.DB_HOST_CLOUD,
     user: process.env.DB_USER_CLOUD,
     password: process.env.DB_PASSWORD_CLOUD,
-    database: process.env.DB_NAME_CLOUD
-})
+    database: process.env.DB_NAME_CLOUD,
+    waitForConnections: true,
+    connectionLimit: 5, // <-- CLAVE, pon el máximo permitido
+    queueLimit: 0
+});
 
 // Hostgator GERAGRI
 // const pool = new createPool({
@@ -39,38 +42,20 @@ const pool = new createPool({
 // Check database connection
 async function checkConnection() {
     try {
-        const connection = await pool.getConnection(); // Intentar obtener una conexión
-        // console.log(`Connected to BD`)
+        const connection = await pool.getConnection();
         console.log('Conexión establecida como id ' + connection.threadId);
-        connection.release(); // Liberar la conexión al pool
+        connection.release();
     } catch (error) {
         console.error('Error in the database connection:', error.stack);
     }
 }
+checkConnection();
 
-// ⬇️ Prevent idle disconnections (Ping DB every 5 minutes)
+// Keep-alive (siempre usando pool, NO nueva conexión)
 setInterval(() => {
     pool.query('SELECT 1').catch((err) => {
         console.error("Keep-Alive Query Error:", err);
     });
-}, 300000); // Every 5 min
-
-function handleDisconnect() {
-    pool.getConnection()
-        .then((connection) => {
-            console.log("✅ Database reconnected!");
-            connection.release();
-        })
-        .catch((err) => {
-            console.error("❌ Database reconnection failed:", err);
-            setTimeout(handleDisconnect, 5000); // Retry in 5s
-        });
-}
-
-// ⬇️ Check every 10 minutes
-setInterval(handleDisconnect, 600000);
-
-// Llamar a la función
-checkConnection();
+}, 300000);
 
 export default pool;

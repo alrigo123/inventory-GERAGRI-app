@@ -12,7 +12,7 @@
 }
 
 .App-header {
-  background: url("https://geragricusco.gob.pe/landing_page/img/carousel-2.jpg") no-repeat center center;
+  background: url("https://geragricusco.gob.pe/background-inventory.jpg") no-repeat center center;
   background-size: cover; /* Asegura que la imagen cubra toda el área */
   min-height: 75vh; /* Asegura que ocupe toda la altura de la ventana */
   width: 100%; /* Usa todo el ancho de la pantalla */

@@ -65,6 +65,7 @@ const ProtectedRouteAdminComponent = ({ children }) => {
             const remainingTime = expirationTime - currentTime;
 
             if (remainingTime <= 0) {
+                localStorage.removeItem('adminToken'); // <--- BORRA EL TOKEN AQUÍ
                 setExpired(true);
                 Swal.fire({
                     icon: 'error',

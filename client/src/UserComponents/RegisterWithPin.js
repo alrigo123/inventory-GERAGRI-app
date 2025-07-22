@@ -76,10 +76,21 @@ const RegisterWithPin = () => {
     // Función que maneja el envío de los datos
     const handleSubmit = async (values) => {
         try {
-            const response = await axios.post(`${API_URL}/register`, {
-                ...values,
-                name_and_last: values.name_and_last.toUpperCase()
-            });
+            const adminToken = localStorage.getItem('adminToken');
+            const response = await axios.post(`${API_URL}/register`,
+                {
+                    ...values,
+                    name_and_last: values.name_and_last.toUpperCase()
+                },
+                {
+                    headers: {
+                        // Usa el mismo nombre que espera el backend (¡revisa cuál decidiste!)
+                        "authorization": `Bearer ${adminToken}`,
+                        // Si prefieres mantener "admin-authorization":
+                        // "admin-authorization": `Bearer ${adminToken}`,
+                    }
+                });
+
             if (response.status === 201) {
                 Swal.fire({
                     title: '¡Usuario Registrado!',
@@ -93,7 +104,6 @@ const RegisterWithPin = () => {
             } else {
                 throw new Error("Ocurrio un error inesperado: " + response.status)
             }
-
         } catch (error) {
             Swal.fire({
                 title: 'El usuario y/o email ya existe!',
@@ -101,7 +111,7 @@ const RegisterWithPin = () => {
                 icon: 'warning',
                 confirmButtonText: 'Aceptar'
             })
-            console.error('Error registering user:', error.response.data);
+            console.error('Error registering user:', error?.response?.data);
         }
     };
 

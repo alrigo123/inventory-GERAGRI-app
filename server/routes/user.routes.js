@@ -16,7 +16,7 @@ const router = Router();
 
 /* Methos to manage session and storage */
 router.post("/login", loginUser); // Component "LoginModalComp", to compare user and password to access to patrimonial code functions
-router.post("/register", registerUser); // File "RegiterWithPin", to register new user in DB
+router.post("/register", verifyAdminToken, registerUser); // File "RegiterWithPin", to register new user in DB
 router.post("/verify-pin", verifyPin); // File "RegisterWithPin", to match the PIN with the user payload
 router.post("/logout", logoutUser); /* PROTECTED ROUTES files, to end a session and clear the token */
 

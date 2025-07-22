@@ -53,7 +53,7 @@ const NavBarComp = () => {
     return (
         <>
             <nav className="navbar">
-                <div className="burger-menu">
+                    <div className="burger-menu">
                     <button className="burger-icon" onClick={toggleMenu}>
                         <span className="bar"></span>
                         <span className="bar"></span>

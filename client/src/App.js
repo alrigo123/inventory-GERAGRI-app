@@ -3,6 +3,7 @@ import './styles/styles.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ServerWarning from './AnimationComp/WarningPop.js';
 
 //LANDING PAGE
 import HomePageComp from './LandingPage/HomePageComp.js';
@@ -41,6 +42,7 @@ import DashboardAdmin from './UserComponents/DashboardAdmin.js';
 function App() {
   return (
     <div className="App">
+      <ServerWarning />
       <ToastContainer />
       <BrowserRouter basename="/inventory">
         <Header />

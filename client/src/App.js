@@ -38,10 +38,12 @@ import RegisterWithPin from './UserComponents/RegisterWithPin.js';
 import ProtectedRouteUsersComp from './UserComponents/ProtectedRouteUsersComp.js';
 import ProtectedRouteAdminComponent from './UserComponents/ProtectedRouteAdminComponent.js';
 import DashboardAdmin from './UserComponents/DashboardAdmin.js';
+import InstallPWA from './utils/InstallPWA.js';
 
 function App() {
   return (
     <div className="App">
+      <InstallPWA />
       <ServerWarning />
       <ToastContainer />
       <BrowserRouter basename="/inventory">

@@ -1,19 +1,14 @@
 {
-  "short_name": "Inventariado App",
+  "short_name": "Inventariado",
   "name": "App para el control de inventariado",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "../public/GERAGRI-LOGO.png",
+      "src": "/inventory/icons/icon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "/inventory/icons/icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

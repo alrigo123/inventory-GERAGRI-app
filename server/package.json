@@ -29,7 +29,9 @@
     "mysql2": "^3.11.4",
     "nodemon": "^3.1.7",
     "openai": "^4.73.1",
-    "sequelize": "^6.37.5"
+    "sequelize": "^6.37.5",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "typescript": "^5.7.2"

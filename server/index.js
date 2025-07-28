@@ -6,6 +6,7 @@ import helmet from 'helmet';
 // npm install helmet --> Protege tu aplicación Express.js de vulnerabilidades comunes
 import rateLimit from 'express-rate-limit';
 // npm install express-rate-limit --> Esto evita ataques de denegación de servicio (DoS).
+import { initSwagger } from './swagger.js';
 
 config(); // Cargar las variables del archivo .env
 const app = express(); // Init Server
@@ -15,6 +16,7 @@ const app = express(); // Init Server
 //     max: 100, // Límite de 100 peticiones por IP
 //     message: 'Demasiadas solicitudes desde esta IP, por favor inténtalo de nuevo más tarde.'
 // });
+
 
 //Middleware
 app.set('trust proxy', 1);
@@ -47,6 +49,10 @@ app.use('/export', export_reports)
 
 const PORT = process.env.PORT || process.env.SERVER_PORT;
 
+// now initialize Swagger **after** routes
+initSwagger(app);
+
 app.listen(PORT, () => {
     console.log(`server :${PORT}`);
+    console.log(`Swagger UI: http://localhost:${PORT}/api-docs`);
 });

@@ -2,3 +2,6 @@
 .env
 AI-ideas.txt
 INVENTARY-PROJECT.docx
+
+/controllers
+/models

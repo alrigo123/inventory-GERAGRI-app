@@ -101,7 +101,7 @@ const ServerWarning = () => {
                 ⚠️ Aviso:
             </span>
             <span>
-                Este aplicativo está siendo soportado en un <b>servidor gratuito</b>.<br />
+                Este aplicativo está siendo soportado en un <b>servidor externo</b>.<br />
                 Puede demorar en mostrar la información entre <b>30 segundos a 1 minuto</b>.<br />
                 ¡Gracias por tu paciencia!
             </span>
